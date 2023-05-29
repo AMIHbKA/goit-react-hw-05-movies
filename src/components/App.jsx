@@ -7,7 +7,7 @@ import MovieDetails from '../pages/MovieDetails';
 import * as API from '../services/api/api';
 
 export const App = () => {
-  API.getMovieReviews(550);
+  API.getTrendingMovies();
   return (
     <>
       <GlobalStyle />

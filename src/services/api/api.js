@@ -15,6 +15,11 @@ const instance = axios.create({
 
 export async function searchMovies(query, page = 1, language = LANGUAGE) {
   try {
+    const cacheKey = `search-movies-${query}-${page}-${language}`;
+    if (cache.has(cacheKey)) {
+      return cache.get(cacheKey);
+    }
+
     const response = await instance.get('search/movie', {
       params: {
         query: query,
@@ -24,12 +29,9 @@ export async function searchMovies(query, page = 1, language = LANGUAGE) {
       },
     });
 
-    const cacheKey = `search-movies-${query}-${page}-${language}`;
-    if (cache.has(cacheKey)) {
-      return cache.get(cacheKey);
-    }
-
     cache.set(cacheKey, response.data);
+
+    console.log('response.data', response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -42,6 +44,11 @@ export async function getTrendingMovies(
   timeWindow = 'day'
 ) {
   try {
+    const cacheKey = `trending-movies-${timeWindow}-${page}-${language}`;
+    if (cache.has(cacheKey)) {
+      return cache.get(cacheKey);
+    }
+
     const response = await instance.get(`trending/movie/${timeWindow}`, {
       params: {
         include_adult: true,
@@ -50,12 +57,9 @@ export async function getTrendingMovies(
       },
     });
 
-    const cacheKey = `trending-movies-${timeWindow}-${page}-${language}`;
-    if (cache.has(cacheKey)) {
-      return cache.get(cacheKey);
-    }
-
     cache.set(cacheKey, response.data);
+    console.log('cache', cache);
+    console.log('response.data', response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -65,16 +69,16 @@ export async function getTrendingMovies(
 //Append To Response - movie detail если будет время посмотреть, прикольная штука
 export async function getMovieDetails(movieId, language = LANGUAGE) {
   try {
+    const cacheKey = `movie-details-${movieId}-${language}`;
+    if (cache.has(cacheKey)) {
+      return cache.get(cacheKey);
+    }
+
     const response = await instance.get(`movie/${movieId}`, {
       params: {
         language: language,
       },
     });
-
-    const cacheKey = `movie-details-${movieId}-${language}`;
-    if (cache.has(cacheKey)) {
-      return cache.get(cacheKey);
-    }
 
     cache.set(cacheKey, response.data);
     console.log('response.data', response.data);
@@ -86,16 +90,16 @@ export async function getMovieDetails(movieId, language = LANGUAGE) {
 
 export async function getMovieCredits(movieId, language = LANGUAGE) {
   try {
+    const cacheKey = `movie-credits-${movieId}-${language}`;
+    if (cache.has(cacheKey)) {
+      return cache.get(cacheKey);
+    }
+
     const response = await instance.get(`movie/${movieId}/credits`, {
       params: {
         language: language,
       },
     });
-
-    const cacheKey = `movie-credits-${movieId}-${language}`;
-    if (cache.has(cacheKey)) {
-      return cache.get(cacheKey);
-    }
 
     cache.set(cacheKey, response.data);
     console.log('response.data', response.data);
