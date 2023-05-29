@@ -4,10 +4,10 @@ import { Layout } from './Layout/Layout';
 import { GlobalStyle } from './UI/GlobalStyles/GlobalStyles';
 import Movies from '../pages/Movies';
 import MovieDetails from '../pages/MovieDetails';
-import * as API from '../services/api/api';
+import { Cast } from './Cast/Cast';
+import { Reviews } from './Reviews/Reviews';
 
 export const App = () => {
-  API.getTrendingMovies();
   return (
     <>
       <GlobalStyle />
@@ -16,8 +16,8 @@ export const App = () => {
           <Route index element={<Home />} />
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<MovieDetails />}>
-            <Route path="cast" element={<div>Cast</div>} />
-            <Route path="reviews" element={<div>Reviews</div>} />
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
       </Routes>

@@ -1,8 +1,13 @@
 import axios from 'axios';
 
+export const IMAGES_URL = 'http://image.tmdb.org/t/p/';
+
+// "backdrop_sizes": "w300", "w780", "w1280", "original"
+// "poster_sizes": "w92", "w154", "w185", "w342", "w500", "w780", "original"
+// "profile_sizes": "w45", "w185", "h632", "original"
+
 const cache = new Map();
 const LANGUAGE = 'en-US';
-//const cacheKey = `search-movies-${query}-${page}`;
 
 const instance = axios.create({
   baseURL: 'https://api.themoviedb.org/3/',
