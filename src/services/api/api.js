@@ -1,11 +1,10 @@
 import axios from 'axios';
 
-export const IMAGES_URL = 'http://image.tmdb.org/t/p/';
-
 // "backdrop_sizes": "w300", "w780", "w1280", "original"
 // "poster_sizes": "w92", "w154", "w185", "w342", "w500", "w780", "original"
 // "profile_sizes": "w45", "w185", "h632", "original"
 
+export const IMAGES_URL = 'http://image.tmdb.org/t/p/';
 const cache = new Map();
 const LANGUAGE = 'en-US';
 
@@ -36,7 +35,7 @@ export async function searchMovies(query, page = 1, language = LANGUAGE) {
 
     cache.set(cacheKey, response.data);
 
-    console.log('response.data', response.data);
+    // console.log('response.data', response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -63,8 +62,8 @@ export async function getTrendingMovies(
     });
 
     cache.set(cacheKey, response.data);
-    console.log('cache', cache);
-    console.log('response.data', response.data);
+    // console.log('cache', cache);
+    // console.log('response.data', response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -86,7 +85,7 @@ export async function getMovieDetails(movieId, language = LANGUAGE) {
     });
 
     cache.set(cacheKey, response.data);
-    console.log('response.data', response.data);
+    // console.log('response.data', response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -107,7 +106,7 @@ export async function getMovieCredits(movieId, language = LANGUAGE) {
     });
 
     cache.set(cacheKey, response.data);
-    console.log('response.data', response.data);
+    // console.log('response.data', response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -123,7 +122,7 @@ export async function getMovieReviews(movieId, page = 1, language = LANGUAGE) {
       },
     });
 
-    console.log('response.data', response.data);
+    // console.log('response.data', response.data);
     return response.data;
   } catch (error) {
     console.log(error);
