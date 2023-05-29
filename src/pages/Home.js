@@ -7,6 +7,10 @@ const Home = () => {
   const location = useLocation();
 
   useEffect(() => {
+    if (!movies) {
+      return;
+    }
+
     const getTrends = async () => {
       try {
         const response = await API.getTrendingMovies();
@@ -17,7 +21,7 @@ const Home = () => {
   }, [movies]);
 
   const renderItems = movies.length > 0;
-  console.log('renderItems', renderItems);
+
   return (
     <ul>
       {renderItems &&

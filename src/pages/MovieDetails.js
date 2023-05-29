@@ -7,24 +7,28 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
-
-  console.log('movieId', movieId);
-  const [movieDetails, setMovieDetails] = useState([]);
+  const [movieDetails, setMovieDetails] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const getMovieDetails = async () => {
       try {
         const response = await API.getMovieDetails(movieId);
-        console.log('response', response);
+
         setMovieDetails(response);
       } catch (error) {
         console.log(error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     getMovieDetails();
   }, [movieId]);
 
+  console.log('movieDetails', movieDetails);
+  console.log('movieId', movieId);
   return (
     <>
       <Link to={backLinkLocationRef.current}>Back to Page</Link>
