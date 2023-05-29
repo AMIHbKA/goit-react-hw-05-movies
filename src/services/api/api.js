@@ -1,25 +1,122 @@
 import axios from 'axios';
 
-const API_KEY = '33585066-cae5e25e756cb0d7a12760c5d';
-const DEFAULT_PER_PAGE = 12;
-const DEFAULT_IMAGE_TYPE = 'photo';
-const DEFAULT_ORIENTATION = 'horizontal';
-const DEFAULT_SAFESEARCH = true;
-axios.defaults.baseURL = 'https://pixabay.com/api/';
+const cache = new Map();
+const LANGUAGE = 'en-US';
+//const cacheKey = `search-movies-${query}-${page}`;
 
-export const imageSearch = async (query, page = 1) => {
-  const options = {
-    params: {
-      key: API_KEY,
-      q: query,
-      image_type: DEFAULT_IMAGE_TYPE,
-      orientation: DEFAULT_ORIENTATION,
-      safesearch: DEFAULT_SAFESEARCH,
-      per_page: DEFAULT_PER_PAGE,
-      page: page,
-    },
-  };
+const instance = axios.create({
+  baseURL: 'https://api.themoviedb.org/3/',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization:
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOTMxNDhmYjNlMjk2YmI3YmM0MGQyZjkzMDg2NWUyYSIsInN1YiI6IjYxMmJkOWRlNDJmMTlmMDA0MjllYzRlMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qUcOqubdlFiw4Vo4XJp8VttB73h6Ocj7p2Hqc1K-jGE',
+  },
+});
 
-  const response = await axios.get('', options);
-  return response.data;
-};
+export async function searchMovies(query, page = 1, language = LANGUAGE) {
+  try {
+    const response = await instance.get('search/movie', {
+      params: {
+        query: query,
+        include_adult: true,
+        page: page,
+        language: language,
+      },
+    });
+
+    const cacheKey = `search-movies-${query}-${page}-${language}`;
+    if (cache.has(cacheKey)) {
+      return cache.get(cacheKey);
+    }
+
+    cache.set(cacheKey, response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getTrendingMovies(
+  page = 1,
+  language = LANGUAGE,
+  timeWindow = 'day'
+) {
+  try {
+    const response = await instance.get(`trending/movie/${timeWindow}`, {
+      params: {
+        include_adult: true,
+        page: page,
+        language: language,
+      },
+    });
+
+    const cacheKey = `trending-movies-${timeWindow}-${page}-${language}`;
+    if (cache.has(cacheKey)) {
+      return cache.get(cacheKey);
+    }
+
+    cache.set(cacheKey, response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//Append To Response - movie detail если будет время посмотреть, прикольная штука
+export async function getMovieDetails(movieId, language = LANGUAGE) {
+  try {
+    const response = await instance.get(`movie/${movieId}`, {
+      params: {
+        language: language,
+      },
+    });
+
+    const cacheKey = `movie-details-${movieId}-${language}`;
+    if (cache.has(cacheKey)) {
+      return cache.get(cacheKey);
+    }
+
+    cache.set(cacheKey, response.data);
+    console.log('response.data', response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getMovieCredits(movieId, language = LANGUAGE) {
+  try {
+    const response = await instance.get(`movie/${movieId}/credits`, {
+      params: {
+        language: language,
+      },
+    });
+
+    const cacheKey = `movie-credits-${movieId}-${language}`;
+    if (cache.has(cacheKey)) {
+      return cache.get(cacheKey);
+    }
+
+    cache.set(cacheKey, response.data);
+    console.log('response.data', response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getMovieReviews(movieId, page = 1, language = LANGUAGE) {
+  try {
+    const response = await instance.get(`movie/${movieId}/reviews`, {
+      params: {
+        language: language,
+        page: page,
+      },
+    });
+
+    console.log('response.data', response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}

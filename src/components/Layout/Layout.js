@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
+import { StyledLink } from './Layout.styled';
 
 export const Layout = () => {
   return (
@@ -7,10 +8,10 @@ export const Layout = () => {
       <header>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <StyledLink to="/">Home</StyledLink>
           </li>
           <li>
-            <NavLink to="/movies">Movies</NavLink>
+            <StyledLink to="/movies">Movies</StyledLink>
           </li>
         </ul>
       </header>
