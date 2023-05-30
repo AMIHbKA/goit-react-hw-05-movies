@@ -4,7 +4,7 @@ import axios from 'axios';
 // "poster_sizes": "w92", "w154", "w185", "w342", "w500", "w780", "original"
 // "profile_sizes": "w45", "w185", "h632", "original"
 
-export const IMAGES_URL = 'http://image.tmdb.org/t/p/';
+export const IMAGES_URL = 'https://image.tmdb.org/t/p/';
 const cache = new Map();
 const LANGUAGE = 'en-US';
 

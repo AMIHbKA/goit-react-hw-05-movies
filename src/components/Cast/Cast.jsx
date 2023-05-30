@@ -20,13 +20,19 @@ export const Cast = () => {
 
   return (
     <ul>
-      {movieCast?.map(({ name, character, profile_path }) => {
+      {movieCast?.map(({ name, character, profile_path }, index) => {
         return (
-          <li>
-            <img
-              src={`${API.IMAGES_URL}w45/${profile_path}`}
-              alt={`${name} profile`}
-            />
+          <li key={index}>
+            {profile_path ? (
+              <img
+                src={`${API.IMAGES_URL}w45/${profile_path}`}
+                alt={`${name} profile`}
+              />
+            ) : (
+              <div>No image</div>
+            )}
+
+            <p>{name}</p>
             <p>
               Character: <span>{character}</span>
             </p>
