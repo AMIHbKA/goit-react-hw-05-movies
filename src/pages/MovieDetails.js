@@ -1,8 +1,9 @@
 import { useRef, Suspense, useState, useEffect } from 'react';
-import { useLocation, useParams, Link, Outlet } from 'react-router-dom';
+import { useLocation, useParams, Outlet } from 'react-router-dom';
 import * as API from '../services/api/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
-import { StyledLink } from 'components/UI/GlobalStyles/Links';
+import { StyledLink, BackLink } from 'components/UI/GlobalStyles/Links';
+import { List } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -30,7 +31,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={backLinkLocationRef.current}>Back to Page</Link>
+      <BackLink to={backLinkLocationRef.current}>&#10232; Back</BackLink>
       <div>Movie Details</div>
       {Object.keys(movieDetails).length > 0 ? (
         <MovieCard movie={movieDetails} />
@@ -38,15 +39,15 @@ const MovieDetails = () => {
         <div>Loading movie details...</div>
       )}
       <h2>Additional information</h2>
-      <ul>
+      <List>
         <li>
           <StyledLink to="cast">Cast</StyledLink>
         </li>
         <li>
           <StyledLink to="reviews">Reviews</StyledLink>
         </li>
-      </ul>
-      <Suspense fallback={<div>Loading subpage...</div>}>
+      </List>
+      <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
     </>

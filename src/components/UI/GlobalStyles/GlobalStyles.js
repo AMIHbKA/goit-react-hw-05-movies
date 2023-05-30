@@ -6,7 +6,7 @@ html {
   box-sizing: border-box;
   width: 100vw;
   overflow-x: hidden;
-  
+
   .no-scroll {
     overflow-y: hidden;
   }
@@ -34,4 +34,16 @@ img {
   height: auto;
 }
 
+ul, li, p, h1, h2, h3, h4 ,h5, h6 {
+    margin: 0;
+    
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
 `;

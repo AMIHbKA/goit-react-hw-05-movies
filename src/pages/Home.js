@@ -10,9 +10,10 @@ const Home = () => {
       try {
         const response = await API.getTrendingMovies();
         setMovies(response.results);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error.message);
+      }
     };
-    console.log('useEffect in Home');
     getTrends();
   }, []);
 

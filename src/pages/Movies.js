@@ -10,14 +10,22 @@ const Movies = () => {
 
   useEffect(() => {
     const query = searchParams.get('query') ?? '';
-    console.log('query', query);
+
     if (!query) {
-      console.log('Empty Query');
       return;
     }
-  });
+
+    const getMovieBySearch = async () => {
+      try {
+        const response = await API.searchMovies(query);
+        setMovies(response.results);
+      } catch (error) {}
+    };
+
+    getMovieBySearch();
+  }, [searchParams]);
+
   const onHandleSubmit = query => {
-    console.log('submit in form');
     const newSearch = query.searchMovie;
     if (newSearch === '') {
       return setSearchParams({});
