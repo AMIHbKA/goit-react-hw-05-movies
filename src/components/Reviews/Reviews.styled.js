@@ -31,6 +31,14 @@ export const ReviewsStyled = styled.div`
     margin-top: 1vh;
     padding-left: 6vw;
     text-align: justify;
+
+    .read-more {
+      padding: 0;
+      font-weight: 500;
+      color: #bf4352;
+      background: none;
+      border: none;
+    }
   }
 
   .reviewer {

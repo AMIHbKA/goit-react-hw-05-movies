@@ -51,7 +51,7 @@ export const ButtonSearch = styled.button`
     opacity: 1;
 
     svg {
-      stroke: #3f51b5;
+      stroke: #bf4352;
     }
   }
 `;

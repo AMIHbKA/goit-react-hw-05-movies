@@ -49,7 +49,6 @@ export const Reviews = () => {
               if (!avatar) {
                 avatar = defaultProfileNoGender;
               } else if (avatar_path.includes('http')) {
-                console.log(avatar_path);
                 avatar = avatar_path.slice(1);
               } else {
                 avatar = `${API.IMAGES_URL}/w64_and_h64_face${avatar_path}`;
@@ -75,8 +74,8 @@ export const Reviews = () => {
                       </time>
                     </div>
                   </div>
-                  <p className="text">{content}</p>
-                  {/* <ReadMore text={content} maxLength={100} /> */}
+                  {/* <p className="text">{content}</p> */}
+                  <ReadMore text={content} maxLength={350} />
                 </li>
               );
             }
