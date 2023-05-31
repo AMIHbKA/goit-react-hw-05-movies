@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { ReviewsStyled } from './Reviews.styled';
 import { getFormattedTime } from 'services/utilities';
 import defaultProfileNoGender from '../../images/placeholders/Blank_noGender.svg';
+import { ReadMore } from './ReadMore/ReadMore';
 
 export const Reviews = () => {
   const { movieId } = useParams();
@@ -75,6 +76,7 @@ export const Reviews = () => {
                     </div>
                   </div>
                   <p className="text">{content}</p>
+                  {/* <ReadMore text={content} maxLength={100} /> */}
                 </li>
               );
             }
