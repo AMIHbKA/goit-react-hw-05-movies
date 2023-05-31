@@ -4,7 +4,7 @@ export const CastListStyled = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 10px;
-
+  margin-top: 2vh;
   list-style: none;
   font-size: 0.8em;
 
@@ -32,5 +32,13 @@ export const CastListStyled = styled.ul`
 
   .character-name {
     color: #bf4352;
+  }
+
+  .no-cast {
+    font-size: 16px;
+    font-weight: 500;
+    color: #bf4352;
+    text-align: center;
+    margin-top: 1vh;
   }
 `;

@@ -1,5 +1,6 @@
 import { MovieList } from 'components/MovieList/MovieList';
 import { SearchForm } from 'components/SearchForm/SearchForm';
+import { Container } from 'components/UI/GlobalStyles/Container.styled';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import * as API from '../services/api/api';
@@ -36,10 +37,10 @@ const Movies = () => {
 
   const renderItems = movies.length > 0;
   return (
-    <>
+    <Container>
       <SearchForm onSubmit={onHandleSubmit} />
       {renderItems && <MovieList movies={movies} />}
-    </>
+    </Container>
   );
 };
 

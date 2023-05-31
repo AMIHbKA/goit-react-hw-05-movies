@@ -7,6 +7,8 @@ import MovieDetails from '../pages/MovieDetails';
 import { Cast } from './Cast/Cast';
 import { Reviews } from './Reviews/Reviews';
 
+//Skeleton!!!!
+
 export const App = () => {
   return (
     <>

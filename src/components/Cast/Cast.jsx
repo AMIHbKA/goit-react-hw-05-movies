@@ -33,22 +33,28 @@ export const Cast = () => {
 
   return (
     <CastListStyled>
-      {movieCast?.map(({ name, character, profile_path, id, gender }) => {
-        const imageSrc = profile_path
-          ? `${API.IMAGES_URL}w185/${profile_path}`
-          : defaultImage(gender);
-        const imageAlt = profile_path ? `${name} profile` : 'No image';
+      {movieCast.length === 0 ? (
+        <p className="no-cast">
+          We don't have information about casting for this movie{' '}
+        </p>
+      ) : (
+        movieCast.map(({ name, character, profile_path, id, gender }) => {
+          const imageSrc = profile_path
+            ? `${API.IMAGES_URL}w185/${profile_path}`
+            : defaultImage(gender);
+          const imageAlt = profile_path ? `${name} profile` : 'No image';
 
-        return (
-          <li key={id}>
-            <img src={imageSrc} alt={imageAlt} />
-            <div className="actor-card">
-              <p className="actor-name">{name}</p>
-              <p className="character-name">{character}</p>
-            </div>
-          </li>
-        );
-      })}
+          return (
+            <li key={id}>
+              <img src={imageSrc} alt={imageAlt} />
+              <div className="actor-card">
+                <p className="actor-name">{name}</p>
+                <p className="character-name">{character}</p>
+              </div>
+            </li>
+          );
+        })
+      )}
     </CastListStyled>
   );
 };

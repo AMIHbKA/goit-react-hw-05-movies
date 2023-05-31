@@ -11,3 +11,9 @@ export const List = styled.ul`
     padding: 5px;
   }
 `;
+
+export const Title = styled.h2`
+  color: #bf4352;
+  font-size: 1.5em;
+  margin-block: 1vh;
+`;

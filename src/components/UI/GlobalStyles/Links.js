@@ -10,6 +10,9 @@ export const StyledLink = styled(NavLink)`
 `;
 
 export const BackLink = styled(Link)`
+  position: absolute;
+  top: 7%;
+  left: 1%;
   display: inline-block;
   padding: 5px;
   font-weight: 600;

@@ -1,4 +1,5 @@
 import { MovieList } from 'components/MovieList/MovieList';
+import { Container } from 'components/UI/GlobalStyles/Container.styled';
 import { useState, useEffect } from 'react';
 import * as API from '../services/api/api';
 
@@ -19,7 +20,7 @@ const Home = () => {
 
   const renderItems = movies.length > 0;
 
-  return <>{renderItems && <MovieList movies={movies} />}</>;
+  return <Container>{renderItems && <MovieList movies={movies} />}</Container>;
 };
 
 export default Home;

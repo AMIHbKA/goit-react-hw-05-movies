@@ -5,6 +5,7 @@ export const MovieListStyled = styled.ul`
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 10px;
   padding: 0;
+  justify-items: center;
 
   img {
     width: 200px;
@@ -21,6 +22,7 @@ export const MovieListStyled = styled.ul`
 
     :hover {
       transform: scale(1.03);
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.2);
     }
   }
 
