@@ -45,6 +45,9 @@ const Movies = () => {
   };
 
   const renderItems = movies.length > 0;
+  const search = searchParams.get('query');
+  console.log('searchParams.get', searchParams.get('query'));
+  console.log('renderItems', renderItems);
   if (isLoading) {
     return (
       <Container>
@@ -54,17 +57,20 @@ const Movies = () => {
         </SkeletonStyle>
       </Container>
     );
+  } else if (!renderItems && search !== null) {
+    return (
+      <Container>
+        <SearchForm onSubmit={onHandleSubmit} />
+        <NoSearchResults className="no-cast">
+          No results from the search "{search}"
+        </NoSearchResults>
+      </Container>
+    );
   } else {
     return (
       <Container>
         <SearchForm onSubmit={onHandleSubmit} />
-        {renderItems ? (
-          <MovieList movies={movies} />
-        ) : (
-          <NoSearchResults className="no-cast">
-            No results from the search "{searchParams.get('query')}"
-          </NoSearchResults>
-        )}
+        <MovieList movies={movies} />
       </Container>
     );
   }
