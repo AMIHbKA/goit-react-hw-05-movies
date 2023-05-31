@@ -15,7 +15,8 @@ export const CastListStyled = styled.ul`
   }
 
   img {
-    margin-right: 5px;
+    margin: 5px;
+
     width: 66px;
     height: 66px;
     object-fit: cover;
@@ -27,5 +28,9 @@ export const CastListStyled = styled.ul`
   .character-name {
     font-weight: 700;
     display: block;
+  }
+
+  .character-name {
+    color: #bf4352;
   }
 `;

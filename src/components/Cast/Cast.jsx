@@ -44,9 +44,7 @@ export const Cast = () => {
             <img src={imageSrc} alt={imageAlt} />
             <div className="actor-card">
               <p className="actor-name">{name}</p>
-              <p className="character-text">
-                Character: <span className="character-name">{character}</span>
-              </p>
+              <p className="character-name">{character}</p>
             </div>
           </li>
         );

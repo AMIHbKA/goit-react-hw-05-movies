@@ -14,8 +14,10 @@ export const MovieListStyled = styled.ul`
   }
 
   li {
-    width: 100%;
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid red;
+    border-radius: 5px;
+    width: 200px;
 
     :hover {
       transform: scale(1.03);
@@ -26,6 +28,10 @@ export const MovieListStyled = styled.ul`
     text-decoration: none;
     color: #000;
     font-weight: 500;
+  }
+
+  .movie-name {
+    padding: 5px;
   }
 
   ul {
