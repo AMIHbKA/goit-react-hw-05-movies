@@ -8,7 +8,7 @@ import { Cast } from './Cast/Cast';
 import { Reviews } from './Reviews/Reviews';
 import { SkeletonTheme } from 'react-loading-skeleton';
 
-//Skeleton!!!!
+//ленивая загрузка и прерывание запросов
 
 export const App = () => {
   return (

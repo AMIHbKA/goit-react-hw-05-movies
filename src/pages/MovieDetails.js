@@ -14,6 +14,7 @@ const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({});
   const [isLoading, setLoading] = useState(false);
 
+  console.log('movieId', movieId);
   useEffect(() => {
     setLoading(true);
     const getMovieDetails = async () => {
