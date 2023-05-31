@@ -6,6 +6,7 @@ import Movies from '../pages/Movies';
 import MovieDetails from '../pages/MovieDetails';
 import { Cast } from './Cast/Cast';
 import { Reviews } from './Reviews/Reviews';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 //Skeleton!!!!
 
@@ -13,16 +14,18 @@ export const App = () => {
   return (
     <>
       <GlobalStyle />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="movies" element={<Movies />} />
-          <Route path="movies/:movieId" element={<MovieDetails />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
+      <SkeletonTheme baseColor="#c5c5c5" highlightColor="#b4afb0">
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="movies" element={<Movies />} />
+            <Route path="movies/:movieId" element={<MovieDetails />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Reviews />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
+        </Routes>
+      </SkeletonTheme>
     </>
   );
 };

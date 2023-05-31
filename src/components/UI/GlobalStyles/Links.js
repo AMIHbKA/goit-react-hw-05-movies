@@ -22,6 +22,7 @@ export const BackLink = styled(Link)`
   border: 1px solid #bf4352;
   border-radius: 5px;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
 
   &:hover {
     color: orange;

@@ -15,7 +15,14 @@ export const MovieCard = ({ movie }) => {
   return (
     <MovieWrapper $backdrop={backdrop}>
       <MovieDetailsContainer>
-        <img className="poster" src={imageSrc} alt={imageAlt} />
+        <img
+          className="poster"
+          src={imageSrc}
+          alt={imageAlt}
+          width="300"
+          height="450"
+          loading="lazy"
+        />
         <div className="movie-info">
           <h2 className="title">{title}</h2>
           <p className="scores">

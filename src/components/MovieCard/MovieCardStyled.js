@@ -12,6 +12,8 @@ export const MovieDetailsContainer = styled(Container)`
     margin-right: 15px;
     object-fit: cover;
     border-radius: 10px;
+    width: 300px;
+    height: 450px;
   }
 
   .title {

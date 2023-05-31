@@ -1,3 +1,4 @@
+import { baseNoInfoStyles } from 'components/UI/GlobalStyles/BaseStyles';
 import styled from 'styled-components';
 
 export const List = styled.ul`
@@ -16,4 +17,8 @@ export const Title = styled.h2`
   color: #bf4352;
   font-size: 1.5em;
   margin-block: 1vh;
+`;
+
+export const NoSearchResults = styled.div`
+  ${baseNoInfoStyles}
 `;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { baseNoInfoStyles } from 'components/UI/GlobalStyles/BaseStyles';
 
 export const CastListStyled = styled.ul`
   display: grid;
@@ -8,13 +9,13 @@ export const CastListStyled = styled.ul`
   list-style: none;
   font-size: 0.8em;
 
-  li {
+  .cast-item {
     display: flex;
     width: 250px;
     align-items: center;
   }
 
-  img {
+  .avatar {
     margin: 5px;
 
     width: 66px;
@@ -35,10 +36,6 @@ export const CastListStyled = styled.ul`
   }
 
   .no-cast {
-    font-size: 16px;
-    font-weight: 500;
-    color: #bf4352;
-    text-align: center;
-    margin-top: 1vh;
+    ${baseNoInfoStyles}
   }
 `;

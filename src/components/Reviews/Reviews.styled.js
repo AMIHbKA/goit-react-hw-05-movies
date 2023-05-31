@@ -1,19 +1,16 @@
 import styled from 'styled-components';
+import { baseNoInfoStyles } from 'components/UI/GlobalStyles/BaseStyles';
 
 export const ReviewsStyled = styled.div`
   .no-reviews {
-    font-size: 16px;
-    font-weight: 500;
-    color: #bf4352;
-    text-align: center;
-    margin-top: 1vh;
+    ${baseNoInfoStyles}
   }
 
-  ul {
+  .list {
     margin-top: 2vh;
   }
 
-  li {
+  .item {
     margin-top: 1vh;
     padding: 1vh;
     border: 2px solid #bf4352;
@@ -71,6 +68,16 @@ export const ReviewsStyled = styled.div`
 
       justify-content: space-between;
       flex-grow: 2;
+    }
+  }
+  .skeleton-item {
+    width: 100%;
+  }
+
+  .skeleton-info {
+    width: 100%;
+    .skeleton-text {
+      margin-top: 1vh;
     }
   }
 `;
