@@ -18,7 +18,7 @@ export const Overlay = styled.div`
     ),
     no-repeat ${props => props.$backdrop ? `url(${props.$backdrop})` : 'none'};
   background-size: cover;
-  background-position: center;
+  
   z-index: 1200;
 `;
 

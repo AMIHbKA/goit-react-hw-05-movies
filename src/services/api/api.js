@@ -84,9 +84,9 @@ export async function getMovieDetails(movieId, language = LANGUAGE) {
         language: language,
       },
     });
-    
+
     cache.set(cacheKey, response.data);
-    
+
     return response.data;
   } catch (error) {
     console.log(error.massage);
@@ -120,6 +120,20 @@ export async function getMovieReviews(movieId, page = 1, language = LANGUAGE) {
       params: {
         language: language,
         page: page,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error.massage);
+  }
+}
+
+export async function getMovieTrailer(movieId, language = LANGUAGE) {
+  try {
+    const response = await instance.get(`movie/${movieId}/videos`, {
+      params: {
+        language: language,
       },
     });
 
