@@ -49,7 +49,6 @@ export const MovieDetailsContainer = styled(Container)`
   }
 
   .title-genres {
-    grid-area: title-genres;
     color: #fff;
   }
 
@@ -71,7 +70,7 @@ export const MovieWrapper = styled.div`
       rgb(31.5 10.5 10.5 / 0.84) 50%,
       rgb(31.5 10.5 10.5 / 0.84) 100%
     ),
-    no-repeat url(${props => props.$backdrop ? '' : props.$backdrop});
+    no-repeat ${props => props.$backdrop ? `url(${props.$backdrop})` : 'none'};
   background-size: cover;
   background-position: center;
 `;
