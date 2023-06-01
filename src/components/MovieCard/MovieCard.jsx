@@ -5,6 +5,8 @@ import defaultPoster from '../../images/placeholders/poster-placeholder.jpg';
 export const MovieCard = ({ movie }) => {
   const { genres, title, vote_average, poster_path, overview, backdrop_path } =
     movie;
+  
+  console.log('рендер MovieCard')
   const imageSrc = poster_path
     ? `${IMAGES_URL}/w300${poster_path}`
     : defaultPoster;
