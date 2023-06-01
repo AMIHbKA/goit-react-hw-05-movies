@@ -30,7 +30,7 @@ export const App = () => {
   return (
     <>
       <GlobalStyle />
-      <SkeletonTheme baseColor="#c5c5c5" highlightColor="#b4afb0">
+      <SkeletonTheme baseColor="#bf4352" highlightColor="#b4afb0">
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
