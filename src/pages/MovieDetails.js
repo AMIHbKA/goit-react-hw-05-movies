@@ -16,19 +16,12 @@ const MovieDetails = () => {
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log('MovieDetails початок роботи useEffect')
-    
-
     const getMovieDetails = async () => {
       try {
-        console.log('MovieDetails початок роботи try')
-        console.log('MovieDetails початок setLoading(true)')
         setLoading(true);
-        console.log('MovieDetails встановлено setLoading(true)')
         const response = await API.getMovieDetails(movieId);
-        console.log('MovieDetails отримано відповідь API.getMovieDetails(movieId)')
         setMovieDetails(response);
-        console.log('MovieDetails оновлено setMovieDetails(response);')
+
       } catch (error) {
         console.log(error.message);
       } finally {
@@ -42,7 +35,6 @@ const MovieDetails = () => {
       API.abortController.abort();
     };
   }, [movieId]);
-    console.log('MovieDetails початок рендеру')
   return (
     <>
       <BackLink to={backLinkLocationRef.current}>&#10232; Back</BackLink>
