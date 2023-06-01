@@ -4,6 +4,7 @@ import { SkeletonCard } from 'components/Skeleton/SkeletonCard';
 import { Container } from 'components/UI/GlobalStyles/Container.styled';
 import { useState, useEffect } from 'react';
 import * as API from '../services/api/api';
+import PropTypes from 'prop-types';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -22,6 +23,10 @@ const Home = () => {
       }
     };
     getTrends();
+
+    return () => {
+      API.abortController.abort();
+    };
   }, []);
 
   const renderItems = movies.length > 0;
@@ -38,6 +43,10 @@ const Home = () => {
       <Container>{renderItems && <MovieList movies={movies} />}</Container>
     );
   }
+};
+
+Home.propTypes = {
+  movies: PropTypes.array,
 };
 
 export default Home;

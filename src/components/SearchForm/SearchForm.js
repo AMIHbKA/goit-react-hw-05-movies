@@ -1,5 +1,6 @@
 import { FormStyled, ButtonSearch, Input } from './SearchForm.styled';
 import { SearchButtonIcon } from '../UI/icons';
+import PropTypes from 'prop-types';
 
 export const SearchForm = ({ onSubmit }) => {
   const handleSubmit = event => {
@@ -18,4 +19,8 @@ export const SearchForm = ({ onSubmit }) => {
       <Input type="search" name="searchMovie" required />
     </FormStyled>
   );
+};
+
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };

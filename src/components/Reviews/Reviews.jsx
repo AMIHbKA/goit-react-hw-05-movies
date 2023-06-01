@@ -6,6 +6,7 @@ import { getFormattedTime } from 'services/utilities';
 import defaultProfileNoGender from '../../images/placeholders/Blank_noGender.svg';
 import { ReadMore } from './ReadMore/ReadMore';
 import { SkeletonReviews } from 'components/Skeleton/SkeletonReviews';
+import PropTypes from 'prop-types';
 
 export const Reviews = () => {
   const { movieId } = useParams();
@@ -31,8 +32,12 @@ export const Reviews = () => {
     };
 
     getMovieReviews();
+
+    return () => {
+      API.abortController.abort();
+    };
   }, [movieId]);
-  console.log(movieReviews);
+
   const { total_results, results } = movieReviews;
 
   if (isLoading) {
@@ -104,4 +109,17 @@ export const Reviews = () => {
       </ReviewsStyled>
     );
   }
+};
+
+Reviews.propTypes = {
+  results: PropTypes.arrayOf(
+    PropTypes.shape({
+      author: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      avatar_path: PropTypes.string.isRequired,
+      rating: PropTypes.string,
+      created_at: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+    })
+  ),
 };

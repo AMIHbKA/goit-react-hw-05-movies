@@ -21,7 +21,6 @@ export const MovieCard = ({ movie }) => {
           alt={imageAlt}
           width="300"
           height="450"
-          loading="lazy"
         />
         <div className="movie-info">
           <h2 className="title">{title}</h2>

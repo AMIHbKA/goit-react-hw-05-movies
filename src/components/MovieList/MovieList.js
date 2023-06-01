@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { MovieListStyled } from './MovieList.styled';
 import { IMAGES_URL } from 'services/api/api';
 import defaultPoster from '../../images/placeholders/poster-placeholder.jpg';
+import PropTypes from 'prop-types';
 
 export const MovieList = ({ movies }) => {
   const location = useLocation();
@@ -25,4 +26,14 @@ export const MovieList = ({ movies }) => {
       })}
     </MovieListStyled>
   );
+};
+
+MovieList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      poster_path: PropTypes.string,
+    })
+  ),
 };

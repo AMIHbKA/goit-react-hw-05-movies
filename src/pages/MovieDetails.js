@@ -6,6 +6,7 @@ import { StyledLink, BackLink } from 'components/UI/GlobalStyles/Links';
 import { List, Title } from './MovieDetails.styled';
 import { Container } from 'components/UI/GlobalStyles/Container.styled';
 import { SkeletonDetails } from 'components/Skeleton/SkeletonDetails';
+import PropTypes from 'prop-types';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -32,6 +33,10 @@ const MovieDetails = () => {
     };
 
     getMovieDetails();
+
+    return () => {
+      API.abortController.abort();
+    };
   }, [movieId]);
 
   return (
@@ -61,3 +66,7 @@ const MovieDetails = () => {
 };
 
 export default MovieDetails;
+
+MovieDetails.propTypes = {
+  movieId: PropTypes.number,
+};

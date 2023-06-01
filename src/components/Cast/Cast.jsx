@@ -6,6 +6,7 @@ import defaultProfileMan from '../../images/placeholders/Blank_man.svg';
 import defaultProfileNoGender from '../../images/placeholders/Blank_noGender.svg';
 import { CastListStyled } from './Cast.styled';
 import { SkeletonCast } from 'components/Skeleton/SkeletonCast';
+import PropTypes from 'prop-types';
 
 const defaultImage = gender => {
   if (gender === 1) {
@@ -34,6 +35,10 @@ export const Cast = () => {
       }
     };
     getMovieCast();
+
+    return () => {
+      API.abortController.abort();
+    };
   }, [movieId]);
 
   return (
@@ -63,4 +68,16 @@ export const Cast = () => {
       )}
     </CastListStyled>
   );
+};
+
+Cast.propTypes = {
+  movieCast: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      character: PropTypes.string.isRequired,
+      profile_path: PropTypes.string,
+      id: PropTypes.number.isRequired,
+      gender: PropTypes.number,
+    })
+  ),
 };

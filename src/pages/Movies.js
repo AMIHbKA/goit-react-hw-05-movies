@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import * as API from '../services/api/api';
 import { NoSearchResults } from './MovieDetails.styled';
+import PropTypes from 'prop-types';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -33,6 +34,10 @@ const Movies = () => {
     };
 
     getMovieBySearch();
+
+    return () => {
+      API.abortController.abort();
+    };
   }, [searchParams]);
 
   const onHandleSubmit = query => {
@@ -46,8 +51,7 @@ const Movies = () => {
 
   const renderItems = movies.length > 0;
   const search = searchParams.get('query');
-  console.log('searchParams.get', searchParams.get('query'));
-  console.log('renderItems', renderItems);
+
   if (isLoading) {
     return (
       <Container>
@@ -74,6 +78,10 @@ const Movies = () => {
       </Container>
     );
   }
+};
+
+Movies.propTypes = {
+  movies: PropTypes.array,
 };
 
 export default Movies;
