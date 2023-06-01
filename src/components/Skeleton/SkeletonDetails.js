@@ -8,7 +8,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 export const SkeletonDetails = () => {
   console.log('рендер SkeletonDetails')
   return (
-    <MovieWrapper>
+    //<MovieWrapper>
       <MovieDetailsContainer>
         <div className="poster">
           <Skeleton width={300} height={450} />
@@ -32,6 +32,6 @@ export const SkeletonDetails = () => {
           </p>
         </div>
       </MovieDetailsContainer>
-    </MovieWrapper>
+    //</MovieWrapper>
   );
 };
