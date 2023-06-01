@@ -1,11 +1,8 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 import { GlobalStyle } from './UI/GlobalStyles/GlobalStyles';
-// import { Cast } from './Cast/Cast';
-// import { Reviews } from './Reviews/Reviews';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { lazy } from 'react';
-//ленивая загрузка и прерывание запросов
 
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
@@ -44,6 +41,7 @@ export const App = () => {
               <Route path="cast" element={<Cast />} />
               <Route path="reviews" element={<Reviews />} />
             </Route>
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
       </SkeletonTheme>

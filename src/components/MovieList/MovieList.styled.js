@@ -35,7 +35,4 @@ export const MovieListStyled = styled.ul`
   .movie-name {
     padding: 5px;
   }
-
-  ul {
-  }
 `;

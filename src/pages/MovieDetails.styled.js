@@ -10,7 +10,11 @@ export const List = styled.ul`
     width: 70px;
     text-align: center;
     padding: 5px;
-  }
+    background-color: #bf4352;
+    border-right: #fff 1px solid;
+    border-left: #fff 1px solid;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 `;
 
 export const Title = styled.h2`

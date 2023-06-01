@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
+import { baseLinkStyles } from './BaseStyles';
 
 export const StyledLink = styled(NavLink)`
-  color: black;
-
-  &.active {
-    color: orange;
-  }
+  ${baseLinkStyles}
 `;
 
 export const BackLink = styled(Link)`
@@ -17,7 +14,7 @@ export const BackLink = styled(Link)`
   padding: 5px;
   font-weight: 600;
   text-decoration: none;
-  color: #000;
+  color: #e0f9ff;
   background-color: #bf4352;
   border: 1px solid #bf4352;
   border-radius: 5px;
@@ -25,6 +22,6 @@ export const BackLink = styled(Link)`
   z-index: 2;
 
   &:hover {
-    color: orange;
+    color: #fff8dc;
   }
 `;
