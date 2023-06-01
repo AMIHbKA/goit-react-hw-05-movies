@@ -37,10 +37,9 @@ export async function searchMovies(query, page = 1, language = LANGUAGE) {
 
     cache.set(cacheKey, response.data);
 
-    // console.log('response.data', response.data);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(error.massage);
   }
 }
 
@@ -64,11 +63,10 @@ export async function getTrendingMovies(
     });
 
     cache.set(cacheKey, response.data);
-    // console.log('cache', cache);
-    // console.log('response.data', response.data);
+
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 }
 
@@ -87,10 +85,10 @@ export async function getMovieDetails(movieId, language = LANGUAGE) {
     });
 
     cache.set(cacheKey, response.data);
-    // console.log('response.data', response.data);
+
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(error.massage);
   }
 }
 
@@ -108,10 +106,10 @@ export async function getMovieCredits(movieId, language = LANGUAGE) {
     });
 
     cache.set(cacheKey, response.data);
-    // console.log('response.data', response.data);
+
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(error.massage);
   }
 }
 
@@ -124,9 +122,8 @@ export async function getMovieReviews(movieId, page = 1, language = LANGUAGE) {
       },
     });
 
-    // console.log('response.data', response.data);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(error.massage);
   }
 }

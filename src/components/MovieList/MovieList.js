@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 export const MovieList = ({ movies }) => {
   const location = useLocation();
-  // console.log(movies);
+
   return (
     <MovieListStyled>
       {movies?.map(({ id, title, poster_path }) => {
