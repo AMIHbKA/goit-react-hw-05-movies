@@ -16,12 +16,14 @@ const MovieDetails = () => {
 
   console.log('movieId', movieId);
   useEffect(() => {
-    setLoading(true);
+    console.log('useeffect movidetails');
     const getMovieDetails = async () => {
       try {
+        setLoading(true);
         const response = await API.getMovieDetails(movieId);
 
         setMovieDetails(response);
+        console.log('response MovieDetails', response);
       } catch (error) {
         console.log(error.message);
       } finally {
