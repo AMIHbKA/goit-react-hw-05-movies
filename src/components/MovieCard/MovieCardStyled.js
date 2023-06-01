@@ -71,7 +71,7 @@ export const MovieWrapper = styled.div`
       rgb(31.5 10.5 10.5 / 0.84) 50%,
       rgb(31.5 10.5 10.5 / 0.84) 100%
     ),
-    no-repeat url(${props => props.$backdrop ?? ''});
+    no-repeat url(${props => props.$backdrop ? '' : props.$backdrop});
   background-size: cover;
   background-position: center;
 `;
