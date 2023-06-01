@@ -5,7 +5,7 @@ import { MovieCard } from 'components/MovieCard/MovieCard';
 import { StyledLink, BackLink } from 'components/UI/GlobalStyles/Links';
 import { List, Title } from './MovieDetails.styled';
 import { Container } from 'components/UI/GlobalStyles/Container.styled';
-// import { SkeletonDetails } from 'components/Skeleton/SkeletonDetails';
+import { SkeletonDetails } from 'components/Skeleton/SkeletonDetails';
 import PropTypes from 'prop-types';
 
 const MovieDetails = () => {
@@ -46,7 +46,7 @@ const MovieDetails = () => {
   return (
     <>
       <BackLink to={backLinkLocationRef.current}>&#10232; Back</BackLink>
-      {/* {isLoading && <SkeletonDetails />} */}
+      {isLoading && <SkeletonDetails />}
       {!isLoading && Object.keys(movieDetails).length > 0 && (
         <MovieCard movie={movieDetails} />
       )}
