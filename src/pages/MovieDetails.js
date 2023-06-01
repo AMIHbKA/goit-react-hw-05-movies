@@ -14,16 +14,14 @@ const MovieDetails = () => {
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
   const [movieDetails, setMovieDetails] = useState({});
   const [isLoading, setLoading] = useState(false);
-  console.log('backLinkLocationRef', backLinkLocationRef);
+
   useEffect(() => {
-    console.log('useeffect movidetails');
     const getMovieDetails = async () => {
       try {
         setLoading(true);
         const response = await API.getMovieDetails(movieId);
 
         setMovieDetails(response);
-        console.log('response MovieDetails', response);
       } catch (error) {
         console.log(error.message);
       } finally {
