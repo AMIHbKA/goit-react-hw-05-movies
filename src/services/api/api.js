@@ -82,7 +82,7 @@ export async function getMovieDetails(movieId, language = LANGUAGE) {
       
       return cache.get(cacheKey);
     }
-
+console.log(`Ключ не обнаружен.`, cacheKey)
     console.log('Отправляет запрос в базу, id: ', movieId)
     const response = await instance.get(`movie/${movieId}`, {
       params: {
@@ -90,7 +90,7 @@ export async function getMovieDetails(movieId, language = LANGUAGE) {
       },
     });
     console.log('Запрос получен, id: ', movieId)
-    console.log(`Ключ не обнаружен.`, cacheKey)
+    
     cache.set(cacheKey, response.data);
     console.log(`Добавили ключ `, cacheKey)
     
