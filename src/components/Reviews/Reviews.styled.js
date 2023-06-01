@@ -42,7 +42,7 @@ export const ReviewsStyled = styled.div`
     display: flex;
 
     .created {
-      color: grey;
+      color: #bf4352;
       font-size: 0.7em;
     }
 

@@ -10,7 +10,7 @@ export const MovieCard = ({ movie }) => {
     : defaultPoster;
   const imageAlt = poster_path ? `${title} poster` : 'No poster';
   const backdrop = backdrop_path
-    ? `${IMAGES_URL}/w780${backdrop_path}`
+    ? `${IMAGES_URL}/w500${backdrop_path}`
     : '#fff';
   return (
     <MovieWrapper $backdrop={backdrop}>
