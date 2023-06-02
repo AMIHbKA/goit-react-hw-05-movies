@@ -13,11 +13,12 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setLoading] = useState(false);
+  const query = searchParams.get('query') ?? '';
 
   useEffect(() => {
-    const query = searchParams.get('query') ?? '';
 
     if (!query) {
+      setMovies([])
       return;
     }
 
@@ -38,46 +39,24 @@ const Movies = () => {
     return () => {
       API.abortController.abort();
     };
-  }, [searchParams]);
-
-  const onHandleSubmit = query => {
-    const newSearch = query.searchMovie;
-    if (newSearch === '') {
-      return setSearchParams({});
-    } else {
-      setSearchParams({ query: newSearch });
-    }
-  };
+  }, [query]);
 
   const renderItems = movies.length > 0;
   const search = searchParams.get('query');
 
-  if (isLoading) {
-    return (
-      <Container>
-        <SearchForm onSubmit={onHandleSubmit} />
-        <SkeletonStyle>
-          <SkeletonCard cards={5} />
-        </SkeletonStyle>
-      </Container>
-    );
-  } else if (!renderItems && search !== null) {
-    return (
-      <Container>
-        <SearchForm onSubmit={onHandleSubmit} />
-        <NoSearchResults className="no-cast">
-          No results from the search "{search}"
-        </NoSearchResults>
-      </Container>
-    );
-  } else {
-    return (
-      <Container>
-        <SearchForm onSubmit={onHandleSubmit} />
-        <MovieList movies={movies} />
-      </Container>
-    );
-  }
+  return (
+    <Container>
+      <SearchForm query={query} setSearchParams={setSearchParams} />
+      {isLoading && <SkeletonStyle>
+        <SkeletonCard cards={5} />
+      </SkeletonStyle>}
+
+      {!renderItems && search !== null && <NoSearchResults className="no-cast">
+        No results from the search "{search}"
+      </NoSearchResults>}
+      {!isLoading && <MovieList movies={movies} />}
+    </Container>
+  )
 };
 
 Movies.propTypes = {
