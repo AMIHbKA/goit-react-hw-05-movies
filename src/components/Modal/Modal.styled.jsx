@@ -16,9 +16,10 @@ export const Overlay = styled.div`
       rgb(31.5 10.5 10.5 / 0.84) 50%,
       rgb(31.5 10.5 10.5 / 0.84) 100%
     ),
-    no-repeat ${props => props.$backdrop ? `url(${props.$backdrop})` : 'none'};
+    no-repeat ${props => (props.$backdrop ? `url(${props.$backdrop})` : 'none')};
   background-size: cover;
-  
+  background-position: center;
+
   z-index: 1200;
 `;
 

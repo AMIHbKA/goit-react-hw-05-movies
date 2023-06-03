@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { TrailerContainer } from 'components/TrailerContainer/TrailerContainer';
 import { getMovieTrailer } from '../../services/api/api';
 
-export const MovieCard = ({ movie }) => {
+export const MovieCard = ({ movie, $primary, $secondary }) => {
   const [showModal, setShowModal] = useState(false);
   const [movieTrailers, setMovieTrailers] = useState([]);
   const [trailerKey, setTrailerKey] = useState(null);
@@ -20,6 +20,7 @@ export const MovieCard = ({ movie }) => {
     if (!movieId) {
       return;
     }
+
     const getTrailer = async () => {
       try {
         const response = await getMovieTrailer(movieId);
@@ -45,16 +46,18 @@ export const MovieCard = ({ movie }) => {
   const { genres, title, vote_average, poster_path, overview, backdrop_path } =
     movie;
   const imageSrc = poster_path
-    ? `${IMAGES_URL}/w300${poster_path}`
+    ? `${IMAGES_URL}w300${poster_path}`
     : defaultPoster;
   const imageAlt = poster_path ? `${title} poster` : 'No poster';
-  const backdrop = backdrop_path
-    ? `${IMAGES_URL}/w500${backdrop_path}`
-    : 'none';
+  const backdrop = backdrop_path ? `${IMAGES_URL}w500${backdrop_path}` : 'none';
 
   return (
-    <MovieWrapper $backdrop={backdrop}>
-      <MovieDetailsContainer>
+    <MovieWrapper
+      $backdrop={backdrop}
+      $primary={$primary}
+      $secondary={$secondary}
+    >
+      <MovieDetailsContainer $primary={$primary} $secondary={$secondary}>
         <img
           className="poster"
           src={imageSrc}
