@@ -72,14 +72,15 @@ export const MovieCard = ({ movie }) => {
               <span>Genres:</span> {genres.map(({ name }) => name).join(', ')}
             </p>
           )}
+          {trailerKey && (
+            <button className="watch" type="button" onClick={onShowModal}>
+              Watch Trailer
+            </button>
+          )}
           <h3 className="overview-title">Overview</h3>
           <p className="overview-text">{overview}</p>
         </div>
-        {trailerKey && (
-          <button type="button" onClick={onShowModal}>
-            Watch Trailer
-          </button>
-        )}
+
         {showModal && (
           <TrailerContainer
             isShow={onShowModal}

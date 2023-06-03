@@ -36,7 +36,7 @@ export const MovieDetailsContainer = styled(Container)`
   }
 
   .overview-title {
-    margin-top: 10%;
+    margin-top: 2vh;
     font-size: 1.2em;
     font-weight: 700;
     color: #bf4352;
@@ -61,16 +61,31 @@ export const MovieDetailsContainer = styled(Container)`
       color: #bf4352;
     }
   }
-`;
 
+  .watch {
+    margin-top: 2vh;
+    padding: 5px;
+    font-weight: 700;
+    color: #bf4352;
+    background: none;
+    border: 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      color: #000;
+    }
+  }
+`;
+const color = `242 229 223`;
+console.log(color);
 export const MovieWrapper = styled.div`
   background: linear-gradient(
       to right,
-      rgb(31.5 10.5 10.5 / 1),
-      rgb(31.5 10.5 10.5 / 0.84) 50%,
-      rgb(31.5 10.5 10.5 / 0.84) 100%
+      rgb(${color} / 1),
+      rgb(${color} / 0.84) 50%,
+      rgb(${color} / 0.84) 100%
     ),
-    no-repeat ${props => props.$backdrop ? `url(${props.$backdrop})` : 'none'};
+    no-repeat ${props => (props.$backdrop ? `url(${props.$backdrop})` : 'none')};
   background-size: cover;
-  background-position: center;
 `;

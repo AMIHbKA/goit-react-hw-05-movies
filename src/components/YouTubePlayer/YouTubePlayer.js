@@ -1,14 +1,15 @@
 import YouTube from 'react-youtube';
+import { usePlayerSize } from '../../Hooks/useWindowSize';
 
 const onReady = event => {
   // access to player in all event handlers via event.target
   event.target.playVideo();
   // event.target.pauseVideo();
-  console.log(event.target);
 };
 
-export const YouTubePlayer = ({ videoId, width, height }) => {
-  console.log('Загрузка');
+export const YouTubePlayer = ({ videoId }) => {
+  const [width, height] = usePlayerSize();
+
   const opts = {
     height: `${height}`,
     width: `${width}`,
