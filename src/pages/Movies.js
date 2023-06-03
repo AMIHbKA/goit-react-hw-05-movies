@@ -16,9 +16,8 @@ const Movies = () => {
   const query = searchParams.get('query') ?? '';
 
   useEffect(() => {
-
     if (!query) {
-      setMovies([])
+      setMovies([]);
       return;
     }
 
@@ -47,16 +46,20 @@ const Movies = () => {
   return (
     <Container>
       <SearchForm query={query} setSearchParams={setSearchParams} />
-      {isLoading && <SkeletonStyle>
-        <SkeletonCard cards={5} />
-      </SkeletonStyle>}
+      {isLoading && (
+        <SkeletonStyle>
+          <SkeletonCard cards={5} />
+        </SkeletonStyle>
+      )}
 
-      {!renderItems && search !== null && <NoSearchResults className="no-cast">
-        No results from the search "{search}"
-      </NoSearchResults>}
+      {!renderItems && search !== null && (
+        <NoSearchResults className="no-cast">
+          No results from the search "{search}"
+        </NoSearchResults>
+      )}
       {!isLoading && <MovieList movies={movies} />}
     </Container>
-  )
+  );
 };
 
 Movies.propTypes = {

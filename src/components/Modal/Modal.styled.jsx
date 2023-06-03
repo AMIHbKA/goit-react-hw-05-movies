@@ -47,6 +47,6 @@ export const CloseButton = styled(CloseButtonIcon)`
   cursor: pointer;
 
   &:hover {
-    fill: #3f51b5;
+    fill: ${props => props.theme.colors.mainColor};
   }
 `;

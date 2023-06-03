@@ -26,7 +26,7 @@ export const Modal = ({ ...props }) => {
     document.documentElement.style.overflowY = 'hidden';
     setTimeout(() => {
       setIsOpen(true);
-    }, 400);
+    }, 200);
 
     return () => {
       document.removeEventListener('keydown', onEscKey);

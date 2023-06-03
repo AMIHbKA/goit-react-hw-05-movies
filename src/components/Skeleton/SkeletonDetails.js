@@ -22,9 +22,12 @@ export const SkeletonDetails = () => {
               <Skeleton width={30} height={15} />
             </span>
           </p>
-          <p className="genres ">
+          <p className="genres">
             <span>Genres:</span> <Skeleton width={300} height={15} />
           </p>
+          <button className="watch">
+            <Skeleton width={112} height={15} />
+          </button>
           <h3 className="overview-title">Overview</h3>
           <p className="overview-text">
             <Skeleton width={500} height={15} count={3} />
