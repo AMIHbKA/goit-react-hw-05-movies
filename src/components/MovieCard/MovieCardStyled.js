@@ -19,19 +19,19 @@ export const MovieDetailsContainer = styled(Container)`
   .title {
     font-weight: 900;
     font-size: 2em;
-    color: #bf4352;
+    color: rgb(${props => props.theme.mainContrastColor});
   }
 
   .scores {
     margin-top: 10px;
     font-weight: 500;
-    color: #fff;
+    color: rgb(${props => props.theme.mainContrastColor});
     vertical-align: middle;
 
     span {
       font-weight: 700;
       font-size: 1.2em;
-      color: #bf4352;
+      color: rgb(${props => props.theme.mainContrastColor});
     }
   }
 
@@ -39,26 +39,26 @@ export const MovieDetailsContainer = styled(Container)`
     margin-top: 2vh;
     font-size: 1.2em;
     font-weight: 700;
-    color: #bf4352;
-    border-bottom: 2px solid #bf4352;
+    color: rgb(${props => props.theme.mainContrastColor});
+    border-bottom: 2px solid rgb(${props => props.theme.mainContrastColor});
   }
 
   .overview-text {
     margin-top: 1%;
-    color: #fff;
+    color: rgb(${props => props.theme.mainContrastColor});
   }
 
   .title-genres {
-    color: #fff;
+    color: rgb(${props => props.theme.mainContrastColor});
   }
 
   .genres {
     margin-top: 1%;
-    color: #fff;
+    color: rgb(${props => props.theme.mainContrastColor});
 
     span {
       font-weight: 700;
-      color: #bf4352;
+      color: rgb(${props => props.theme.mainContrastColor});
     }
   }
 
@@ -66,25 +66,25 @@ export const MovieDetailsContainer = styled(Container)`
     margin-top: 2vh;
     padding: 5px;
     font-weight: 700;
-    color: #bf4352;
+    color: rgb(${props => props.theme.mainContrastColor});
     background: none;
     border: 1px solid;
     border-radius: 5px;
     cursor: pointer;
 
     &:hover {
-      color: #000;
+      color: rgb(${props => props.theme.mainDynamicColor});
+      background-color: rgb(${props => props.theme.mainContrastColor});
     }
   }
 `;
-const color = `242 229 223`;
-console.log(color);
+
 export const MovieWrapper = styled.div`
   background: linear-gradient(
       to right,
-      rgb(${color} / 1),
-      rgb(${color} / 0.84) 50%,
-      rgb(${color} / 0.84) 100%
+      rgb(${props => props.theme.mainDynamicColor} / 1),
+      rgb(${props => props.theme.mainDynamicColor} / 0.84) 50%,
+      rgb(${props => props.theme.mainDynamicColor} / 0.84) 100%
     ),
     no-repeat ${props => (props.$backdrop ? `url(${props.$backdrop})` : 'none')};
   background-size: cover;

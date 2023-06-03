@@ -19,7 +19,7 @@ export const Input = styled.input`
   outline: none;
   padding-left: 4px;
   padding-right: 4px;
-  border: 1px solid #bf4352;
+  border: 1px solid ${props => props.theme.colors.mainColor};
   border-left: none;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -34,7 +34,7 @@ export const ButtonSearch = styled.button`
   display: inline-block;
   width: 32px;
   height: 32px;
-  border: 1px solid #bf4352;
+  border: 1px solid ${props => props.theme.colors.mainColor};
   border-right: none;
   /* background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg'); */
   background-size: 40%;
@@ -51,7 +51,7 @@ export const ButtonSearch = styled.button`
     opacity: 1;
 
     svg {
-      stroke: #bf4352;
+      stroke: ${props => props.theme.colors.mainColor};
     }
   }
 `;

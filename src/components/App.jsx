@@ -3,6 +3,8 @@ import { Layout } from './Layout/Layout';
 import { GlobalStyle } from './UI/GlobalStyles/GlobalStyles';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { lazy } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './UI/Themes/theme';
 
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
@@ -30,19 +32,24 @@ export const App = () => {
   return (
     <>
       <GlobalStyle />
-      <SkeletonTheme baseColor="#bf4352" highlightColor="#b4afb0">
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="movies" element={<Movies />} />
-            <Route path="movies/:movieId" element={<MovieDetails />}>
-              <Route path="cast" element={<Cast />} />
-              <Route path="reviews" element={<Reviews />} />
+      <ThemeProvider theme={theme}>
+        <SkeletonTheme
+          baseColor={theme.colors.mainColor}
+          highlightColor="#b4afb0"
+        >
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="movies" element={<Movies />} />
+              <Route path="movies/:movieId" element={<MovieDetails />}>
+                <Route path="cast" element={<Cast />} />
+                <Route path="reviews" element={<Reviews />} />
+              </Route>
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Route>
-        </Routes>
-      </SkeletonTheme>
+          </Routes>
+        </SkeletonTheme>
+      </ThemeProvider>
     </>
   );
 };

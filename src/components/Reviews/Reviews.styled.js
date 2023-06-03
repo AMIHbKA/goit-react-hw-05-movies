@@ -13,13 +13,13 @@ export const ReviewsStyled = styled.div`
   .item {
     margin-top: 1vh;
     padding: 1vh;
-    border: 2px solid #bf4352;
+    border: 2px solid ${props => props.theme.colors.mainColor};
     border-radius: 5px;
     box-shadow: 0 0 10px rgb(0 0 0 / 0.2);
   }
 
   .author {
-    color: #bf4352;
+    color: ${props => props.theme.colors.mainColor};
     font-weight: 700;
     padding: 5px;
   }
@@ -32,7 +32,7 @@ export const ReviewsStyled = styled.div`
     .read-more {
       padding: 0;
       font-weight: 500;
-      color: #bf4352;
+      color: ${props => props.theme.colors.mainColor};
       background: none;
       border: none;
     }
@@ -42,7 +42,7 @@ export const ReviewsStyled = styled.div`
     display: flex;
 
     .created {
-      color: #bf4352;
+      color: ${props => props.theme.colors.mainColor};
       font-size: 0.7em;
     }
 
@@ -60,7 +60,7 @@ export const ReviewsStyled = styled.div`
       color: #fff;
       font-weight: 500;
       border-radius: 5px;
-      background-color: #bf4352;
+      background-color: ${props => props.theme.colors.mainColor};
     }
 
     .rating-wrapper {

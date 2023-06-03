@@ -5,6 +5,11 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { TrailerContainer } from 'components/TrailerContainer/TrailerContainer';
 import { getMovieTrailer } from '../../services/api/api';
+import {
+  getContrastColor,
+  getDominantColorFromImage,
+} from 'services/utilities';
+import { theme } from 'components/UI/Themes/theme';
 
 export const MovieCard = ({ movie }) => {
   const [showModal, setShowModal] = useState(false);
