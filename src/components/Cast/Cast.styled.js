@@ -32,7 +32,7 @@ export const CastListStyled = styled.ul`
   }
 
   .character-name {
-    color: #bf4352;
+    color: ${props => props.theme.colors.mainColor};
   }
 
   .no-cast {

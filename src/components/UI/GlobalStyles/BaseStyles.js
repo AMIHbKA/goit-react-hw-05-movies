@@ -13,7 +13,7 @@ export const baseLinkStyles = css`
 export const baseNoInfoStyles = css`
   font-size: 16px;
   font-weight: 500;
-  color: #bf4352;
+  color: ${props => props.theme.colors.mainColor};
   text-align: center;
   margin-top: 1vh;
 `;

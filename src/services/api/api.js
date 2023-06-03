@@ -86,7 +86,7 @@ export async function getMovieDetails(movieId, language = LANGUAGE) {
     });
 
     cache.set(cacheKey, response.data);
-    console.log(response.data);
+
     return response.data;
   } catch (error) {
     console.log(error.massage);
