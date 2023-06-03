@@ -15,7 +15,6 @@ import {
   getContrastColor,
   getDominantColorFromImage,
 } from 'services/utilities';
-import { theme } from 'components/UI/Themes/theme';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
