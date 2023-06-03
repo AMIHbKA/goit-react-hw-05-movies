@@ -1,34 +1,46 @@
 import { IMAGES_URL } from 'services/api/api';
 import { MovieWrapper, MovieDetailsContainer } from './MovieCardStyled';
 import defaultPoster from '../../images/placeholders/poster-placeholder.jpg';
-import { YouTubePlayer } from 'components/YouTubePlayer/YouTubePlayer';
-import { createPortal } from 'react-dom';
 import { useEffect, useState } from 'react';
-import { Modal } from 'components/Modal/Modal';
 import { useParams } from 'react-router-dom';
+import { TrailerContainer } from 'components/TrailerContainer/TrailerContainer';
+import { getMovieTrailer } from '../../services/api/api';
 
 export const MovieCard = ({ movie }) => {
   const [showModal, setShowModal] = useState(false);
-  // const [watchTrailer, setWatchTrailer] = useState(false)
+  const [movieTrailers, setMovieTrailers] = useState([]);
+  const [trailerKey, setTrailerKey] = useState(null);
   const { movieId } = useParams();
+
   const onShowModal = () => {
-    setShowModal(state => !state);
+    setShowModal(s => !s);
   };
-  console.log("MovieCard movieId", movieId)
-  // useEffect(() => {
-  //   if (!showModal) {
-  //     return;
-  //   }
 
-  //   const getTrailer = async () => {
-  //     try {
+  useEffect(() => {
+    if (!movieId) {
+      return;
+    }
+    const getTrailer = async () => {
+      try {
+        const response = await getMovieTrailer(movieId);
+        setMovieTrailers(response);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getTrailer();
+  }, [movieId]);
 
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   }
-
-  // })
+  useEffect(() => {
+    if (!movieTrailers.length) return;
+    const officialTrailer = movieTrailers.find(({ name }) =>
+      name.toLowerCase().includes('official')
+    );
+    const firstOfficialTrailerKey = officialTrailer
+      ? officialTrailer.key
+      : null;
+    setTrailerKey(firstOfficialTrailerKey);
+  }, [movieTrailers]);
 
   const { genres, title, vote_average, poster_path, overview, backdrop_path } =
     movie;
@@ -40,7 +52,6 @@ export const MovieCard = ({ movie }) => {
     ? `${IMAGES_URL}/w500${backdrop_path}`
     : 'none';
 
-  console.log('backdrop', backdrop);
   return (
     <MovieWrapper $backdrop={backdrop}>
       <MovieDetailsContainer>
@@ -64,14 +75,18 @@ export const MovieCard = ({ movie }) => {
           <h3 className="overview-title">Overview</h3>
           <p className="overview-text">{overview}</p>
         </div>
-        <button type="button" onClick={onShowModal}>Watch Trailer</button>
-        {showModal &&
-          createPortal(
-            <Modal onActive={onShowModal} backdrop={backdrop}>
-              <YouTubePlayer videoId="BdJKm16Co6M" width={640} height={360} />
-            </Modal>,
-            document.body
-          )}
+        {trailerKey && (
+          <button type="button" onClick={onShowModal}>
+            Watch Trailer
+          </button>
+        )}
+        {showModal && (
+          <TrailerContainer
+            isShow={onShowModal}
+            backdrop={backdrop}
+            video={trailerKey}
+          />
+        )}
       </MovieDetailsContainer>
     </MovieWrapper>
   );

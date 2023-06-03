@@ -1,16 +1,14 @@
 import YouTube from 'react-youtube';
-import * as API from '../../services/api/api';
 
-const onReady = (event) => {
+const onReady = event => {
   // access to player in all event handlers via event.target
-  event.target.pauseVideo();
-}
+  event.target.playVideo();
+  // event.target.pauseVideo();
+  console.log(event.target);
+};
 
 export const YouTubePlayer = ({ videoId, width, height }) => {
-
-
-
-  console.log("Загрузка")
+  console.log('Загрузка');
   const opts = {
     height: `${height}`,
     width: `${width}`,
@@ -20,7 +18,5 @@ export const YouTubePlayer = ({ videoId, width, height }) => {
     },
   };
 
-
   return <YouTube videoId={videoId} opts={opts} onReady={onReady} />;
-}
-
+};

@@ -131,13 +131,19 @@ export async function getMovieReviews(movieId, page = 1, language = LANGUAGE) {
 
 export async function getMovieTrailer(movieId, language = LANGUAGE) {
   try {
+    const cacheKey = `movie-trailer-${movieId}-${language}`;
+    if (cache.has(cacheKey)) {
+      return cache.get(cacheKey);
+    }
+
     const response = await instance.get(`movie/${movieId}/videos`, {
       params: {
         language: language,
       },
     });
 
-    return response.data;
+    cache.set(cacheKey, response.data.results);
+    return response.data.results;
   } catch (error) {
     console.log(error.massage);
   }

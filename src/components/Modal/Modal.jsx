@@ -34,7 +34,6 @@ export const Modal = ({ onActive, backdrop, children }) => {
   }, [onActive]);
 
   const modalClassName = isOpen ? 'modal-open' : '';
-  console.log('backdrop modal', backdrop);
   return (
     <Overlay onClick={handleClick} $backdrop={backdrop}>
       <ModalStyled className={modalClassName}>{children}</ModalStyled>
