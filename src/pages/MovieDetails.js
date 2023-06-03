@@ -12,7 +12,6 @@ import { Container } from 'components/UI/GlobalStyles/Container.styled';
 import { SkeletonDetails } from 'components/Skeleton/SkeletonDetails';
 import PropTypes from 'prop-types';
 import { getDynamicColors } from 'services/utilities';
-import { theme } from 'components/UI/Themes/theme';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
