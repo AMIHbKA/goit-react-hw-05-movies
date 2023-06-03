@@ -2,7 +2,7 @@ import { MovieList } from 'components/MovieList/MovieList';
 import { SkeletonStyle } from 'components/Skeleton/Skeleton.styled';
 import { SkeletonCard } from 'components/Skeleton/SkeletonCard';
 import { Container } from 'components/UI/GlobalStyles/Container.styled';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import * as API from '../services/api/api';
 import PropTypes from 'prop-types';
 

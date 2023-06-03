@@ -5,7 +5,6 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import { lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './UI/Themes/theme';
-
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails'));

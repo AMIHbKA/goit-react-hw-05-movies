@@ -15,6 +15,7 @@ import {
   getContrastColor,
   getDominantColorFromImage,
 } from 'services/utilities';
+import { Loader } from 'components/Loader/Loader';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -49,7 +50,7 @@ const MovieDetails = () => {
     if (!Object.keys(movieDetails).length) return;
     const { backdrop_path } = movieDetails;
     const backdrop = backdrop_path
-      ? `${IMAGES_URL}w500${backdrop_path}`
+      ? `${IMAGES_URL}w185${backdrop_path}`
       : 'none';
 
     if (backdrop === 'none') return;
@@ -84,20 +85,20 @@ const MovieDetails = () => {
         />
       )}
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <Container>
-          <Title>Additional information</Title>
-          <List>
-            <li>
-              <StyledLink to="cast">Cast</StyledLink>
-            </li>
-            <li>
-              <StyledLink to="reviews">Reviews</StyledLink>
-            </li>
-          </List>
-          {!isLoading && <Outlet />}
-        </Container>
-      </Suspense>
+      <Container>
+        <Title>Additional information</Title>
+        <List>
+          <li>
+            <StyledLink to="cast">Cast</StyledLink>
+          </li>
+          <li>
+            <StyledLink to="reviews">Reviews</StyledLink>
+          </li>
+        </List>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
+      </Container>
     </>
   );
 };

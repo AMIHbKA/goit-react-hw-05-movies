@@ -80,6 +80,7 @@ export const MovieDetailsContainer = styled(Container)`
 `;
 
 export const MovieWrapper = styled.div`
+  position: relative;
   background: linear-gradient(
       to right,
       rgb(${props => props.$primary} / 1) 25%,
@@ -89,5 +90,5 @@ export const MovieWrapper = styled.div`
     ),
     no-repeat ${props => (props.$backdrop ? `url(${props.$backdrop})` : 'none')};
   background-size: cover;
-  background-position: center top;
+  background-position: center center;
 `;
