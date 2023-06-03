@@ -12,72 +12,66 @@ export const getFormattedTime = timeString => {
   return `${formattedDate} ${formattedTime}`;
 };
 
-const getDominantColorFromImage = imageUrl => {
-  return new Promise((resolve, reject) => {
+export const getDominantColorFromImage = async imageUrl => {
+  try {
     const image = new Image();
     image.src = imageUrl;
     image.crossOrigin = 'crossOrigin';
-    image.onload = () => {
-      createImageBitmap(image)
-        .then(bitmap => {
-          const offscreenCanvas = new OffscreenCanvas(
-            bitmap.width,
-            bitmap.height
-          );
-          const context = offscreenCanvas.getContext('2d');
-          context.drawImage(bitmap, 0, 0);
 
-          const imageData = context.getImageData(
-            0,
-            0,
-            offscreenCanvas.width,
-            offscreenCanvas.height
-          );
-          const pixels = imageData.data;
+    await new Promise((resolve, reject) => {
+      image.onload = resolve;
+      image.onerror = () => reject('Ошибка загрузки изображения');
+    });
 
-          const colorFrequency = {};
+    const bitmap = await createImageBitmap(image);
+    const offscreenCanvas = new OffscreenCanvas(bitmap.width, bitmap.height);
+    const context = offscreenCanvas.getContext('2d');
+    context.drawImage(bitmap, 0, 0);
 
-          for (let i = 0; i < pixels.length; i += 4) {
-            const r = pixels[i];
-            const g = pixels[i + 1];
-            const b = pixels[i + 2];
-            const color = `${r},${g},${b}`;
+    const imageData = context.getImageData(
+      0,
+      0,
+      offscreenCanvas.width,
+      offscreenCanvas.height
+    );
+    const pixels = imageData.data;
 
-            if (colorFrequency[color]) {
-              colorFrequency[color]++;
-            } else {
-              colorFrequency[color] = 1;
-            }
-          }
+    const colorFrequency = {};
 
-          let maxFrequency = 0;
-          let dominantColor = '';
+    for (let i = 0; i < pixels.length; i += 4) {
+      const r = pixels[i];
+      const g = pixels[i + 1];
+      const b = pixels[i + 2];
+      const color = `${r},${g},${b}`;
 
-          for (const color in colorFrequency) {
-            if (colorFrequency[color] > maxFrequency) {
-              maxFrequency = colorFrequency[color];
-              dominantColor = color.split(',').join(' ');
-            }
-          }
+      if (colorFrequency[color]) {
+        colorFrequency[color]++;
+      } else {
+        colorFrequency[color] = 1;
+      }
+    }
 
-          resolve(dominantColor);
-        })
-        .catch(error => {
-          reject('Ошибка при создании ImageBitmap: ' + error);
-        });
-    };
+    let maxFrequency = 0;
+    let dominantColor = '';
 
-    image.onerror = () => {
-      reject('Ошибка загрузки изображения');
-    };
-  });
+    for (const color in colorFrequency) {
+      if (colorFrequency[color] > maxFrequency) {
+        maxFrequency = colorFrequency[color];
+        dominantColor = color.split(',').join(' ');
+      }
+    }
+
+    return dominantColor;
+  } catch (error) {
+    throw new Error('Ошибка при получении доминирующего цвета: ' + error);
+  }
 };
 
-const getContrastColor = rgbColor => {
+export const getContrastColor = rgbColor => {
   const [r, g, b] = rgbColor.split(' ').map(Number);
 
   const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-  const contrastColor = brightness > 128 ? '0, 0, 0' : '255, 255, 255';
+  const contrastColor = brightness > 128 ? '0 0 0' : '255 255 255';
 
   return contrastColor;
 };

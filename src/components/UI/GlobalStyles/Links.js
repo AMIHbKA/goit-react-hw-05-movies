@@ -13,15 +13,15 @@ export const BackLink = styled(Link)`
   padding: 5px;
   font-weight: 600;
   text-decoration: none;
-  color: rgb(${props => props.theme.mainDynamicColor});
-  background-color: rgb(${props => props.theme.mainContrastColor});
-  border: 1px solid rgb(${props => props.theme.mainContrastColor});
+  color: rgb(${props => props.$primary});
+  background-color: rgb(${props => props.$secondary});
+  border: 1px solid rgb(${props => props.$secondary});
   border-radius: 5px;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2;
 
   &:hover {
-    color: rgb(${props => props.theme.mainContrastColor});
-    background-color: rgb(${props => props.theme.mainDynamicColor});
+    color: rgb(${props => props.$secondary});
+    background-color: rgb(${props => props.$primary});
   }
 `;

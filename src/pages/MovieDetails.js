@@ -11,7 +11,11 @@ import { List, Title } from './MovieDetails.styled';
 import { Container } from 'components/UI/GlobalStyles/Container.styled';
 import { SkeletonDetails } from 'components/Skeleton/SkeletonDetails';
 import PropTypes from 'prop-types';
-import { getDynamicColors } from 'services/utilities';
+import {
+  getContrastColor,
+  getDominantColorFromImage,
+} from 'services/utilities';
+import { theme } from 'components/UI/Themes/theme';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -19,6 +23,8 @@ const MovieDetails = () => {
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
   const [movieDetails, setMovieDetails] = useState({});
   const [isLoading, setLoading] = useState(false);
+  const [contrastColor, setContrastColor] = useState('');
+  const [mainColor, setmainColor] = useState('');
 
   useEffect(() => {
     const getMovie = async () => {
@@ -42,23 +48,41 @@ const MovieDetails = () => {
 
   useEffect(() => {
     if (!Object.keys(movieDetails).length) return;
-
     const { backdrop_path } = movieDetails;
     const backdrop = backdrop_path
-      ? `${IMAGES_URL}/w500${backdrop_path}`
+      ? `${IMAGES_URL}w500${backdrop_path}`
       : 'none';
 
     if (backdrop === 'none') return;
-    getDynamicColors(backdrop);
-    console.log('backdrop useeffect');
+
+    const getColors = async () => {
+      const mainColor = await getDominantColorFromImage(backdrop);
+      const contrastColor = getContrastColor(mainColor);
+      setContrastColor(contrastColor);
+      setmainColor(mainColor);
+    };
+
+    getColors();
   }, [movieDetails]);
 
   return (
     <>
-      <BackLink to={backLinkLocationRef.current}>&#10232; Back</BackLink>
       {isLoading && <SkeletonDetails />}
-      {!isLoading && Object.keys(movieDetails).length > 0 && (
-        <MovieCard movie={movieDetails} />
+      {!isLoading && (
+        <BackLink
+          to={backLinkLocationRef.current}
+          $primary={mainColor}
+          $secondary={contrastColor}
+        >
+          &#10232; Back
+        </BackLink>
+      )}
+      {Object.keys(movieDetails).length > 0 && (
+        <MovieCard
+          movie={movieDetails}
+          $primary={mainColor}
+          $secondary={contrastColor}
+        />
       )}
 
       <Suspense fallback={<div>Loading...</div>}>
